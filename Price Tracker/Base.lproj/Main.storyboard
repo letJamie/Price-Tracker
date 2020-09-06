@@ -10,7 +10,7 @@
         <!--BitCoin-->
         <scene sceneID="nOC-p4-ayD">
             <objects>
-                <viewController id="rUX-cn-nYh" sceneMemberID="viewController">
+                <viewController id="rUX-cn-nYh" customClass="ViewController" customModule="Price_Tracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lVu-DV-Lie">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
