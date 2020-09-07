@@ -9,9 +9,18 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
+    
+    @IBOutlet weak var usdLabel: UILabel!
+    @IBOutlet weak var eurLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        getPrice()
+    }
+    
+    func getPrice() {
         
         if let url = URL(string: "https://min-api.cryptocompare.com/data/price?fsym=BTC&tsyms=USD,JPY,EUR") {
             
@@ -23,35 +32,35 @@ class ViewController: UIViewController {
                         
                         if let json = try? JSONSerialization.jsonObject(with: data!, options: []) as? [String:Double] {
                             
-                            if let usdPrice = json["USD"] {
-                                print(usdPrice)
+                            DispatchQueue.main.async {
+                                
+                                if let usdPrice = json["USD"] {
+                                    self.usdLabel.text = "$\(usdPrice)"
+                                }
+                                
+                                if let eurPrice = json["EUR"] {
+                                    self.eurLabel.text = "Euro \(eurPrice)"
+                                }
+                                
+                                if let jpyPrice = json["JPY"] {
+                                    print(jpyPrice)
+                                }
                             }
-                            
-                            if let eurPrice = json["EUR"] {
-                                print(eurPrice)
-                            }
-                            
-                            if let jpyPrice = json["JPY"] {
-                                print(jpyPrice)
-                            }
-                            
-                            
                         }
                     }
                     
-                   
                 } else {
                     print("error")
                 }
                 
             }.resume()
-            
         }
-        
-        
-        // Do any additional setup after loading the view.
     }
-
-
+    
+    @IBAction func refreshTapped(_ sender: Any) {
+        
+        getPrice()
+    }
+    
 }
 

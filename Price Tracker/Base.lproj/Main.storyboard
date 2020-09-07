@@ -55,8 +55,16 @@
                         <viewLayoutGuide key="safeArea" id="cxz-es-aqw"/>
                     </view>
                     <navigationItem key="navigationItem" title="BitCoin" id="CoI-Q4-uT2">
-                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="DOc-N7-3TY"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="DOc-N7-3TY">
+                            <connections>
+                                <action selector="refreshTapped:" destination="rUX-cn-nYh" id="K4v-lN-ABW"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="eurLabel" destination="Y6q-HO-hBz" id="jcR-2c-NhK"/>
+                        <outlet property="usdLabel" destination="G9u-To-NPc" id="ZxZ-VU-mCm"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hEi-Sj-ycE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
