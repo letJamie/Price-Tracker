@@ -35,15 +35,12 @@ class ViewController: UIViewController {
                             DispatchQueue.main.async {
                                 
                                 if let usdPrice = json["USD"] {
-                                    self.usdLabel.text = "$\(usdPrice)"
+                                    
+                                    self.usdLabel.text = self.getStringFor(price: usdPrice, currencyCode: "USD")
                                 }
                                 
                                 if let eurPrice = json["EUR"] {
-                                    self.eurLabel.text = "Euro \(eurPrice)"
-                                }
-                                
-                                if let jpyPrice = json["JPY"] {
-                                    print(jpyPrice)
+                                    self.eurLabel.text = self.getStringFor(price: eurPrice, currencyCode: "EUR")
                                 }
                             }
                         }
@@ -55,6 +52,20 @@ class ViewController: UIViewController {
                 
             }.resume()
         }
+    }
+    
+    func getStringFor(price: Double, currencyCode: String) -> String {
+        
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        formatter.currencyCode = currencyCode
+        
+        if let usdString = formatter.string(from: NSNumber(value: price)) {
+                 
+            return usdString
+        }
+        
+        return "error"
     }
     
     @IBAction func refreshTapped(_ sender: Any) {
